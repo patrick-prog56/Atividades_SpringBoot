@@ -57,14 +57,14 @@ public class ProdutoController {
 	
 	//=============================================POST====================================
 	@PostMapping
-	public ResponseEntity<ProdutoModel> post (@RequestBody ProdutoModel nome) {
-		return  ResponseEntity.status(HttpStatus.CREATED).body(repository.save(nome));
+	public ResponseEntity<ProdutoModel> post (@RequestBody ProdutoModel produto) {
+		return  ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
 	}
 	
 	//=============================================PUT=================================
 	@PutMapping
-	public ResponseEntity<ProdutoModel> put (@RequestBody ProdutoModel nome) {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(nome));	
+	public ResponseEntity<ProdutoModel> put (@RequestBody ProdutoModel produto) {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(produto));	
 	}
 	
 	

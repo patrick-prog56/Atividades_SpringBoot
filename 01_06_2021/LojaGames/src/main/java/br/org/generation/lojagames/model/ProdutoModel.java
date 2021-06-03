@@ -7,10 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
 @Table (name = "Tb_produto")
@@ -26,6 +31,11 @@ public class ProdutoModel {
 	@Temporal(TemporalType.TIMESTAMP) //data de lançamento do jogo
 	private Date data_lancamento = new java.sql.Date(System.currentTimeMillis());
 	
+	
+	//Relacionamento está sendo feito abaixo
+	@ManyToOne //many to one porque vários produtos só podem ter uma categoria cada.
+	@JsonIgnoreProperties("produto")
+	private CategoriaModel categoria;//coloco uma categoria para este produto que foi criado, ou seja, estou criando uma característica para o produto não é criado como list pois só vai ter uma categoria para o produto.
 	
 	@NotNull
 	private BigDecimal preco; //preço do jogo
@@ -71,6 +81,14 @@ public class ProdutoModel {
 
 	public void setFaixa_etaria(int faixa_etaria) {
 		this.faixa_etaria = faixa_etaria;
+	}
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
 	}
 
 	
